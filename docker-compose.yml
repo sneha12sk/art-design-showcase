@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  mysql:
+    container_name: mysql-sql-ads
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: art_showcase_db
+      MYSQL_USER: app_user
+      MYSQL_PASSWORD: app_password
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql  # Host volume mapped to container's data directory
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  mail-dev:
+    container_name: mail-dev-ads
+    image: maildev/maildev
+    ports:
+      - "1080:1080"
+      - "1025:1025"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mysql-data:  # Volume definition for persistent MySQL data
+    driver: local
