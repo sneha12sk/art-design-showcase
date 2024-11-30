@@ -1,0 +1,33 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/art_showcase_db
+    username: username
+    password: password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+      database: mysql
+      database-platform: org.hibernate.dialect.MySQLDialect
+  mail:
+      host: localhost       # SMTP server address (replace with actual)
+      port: 1025             # SMTP port (commonly 587 for TLS or 465 for SSL)
+      username: user       # SMTP username
+      password: password      # SMTP password
+      protocol: smtp                # Protocol (SMTP)
+      properties:
+        mail:
+          smtp:
+            auth: true               # Enable SMTP authentication
+            starttls:
+              enable: true           # Enable STARTTLS
+            connectiontimeout: 5000  # Connection timeout in milliseconds
+            timeout: 3000            # Timeout for the entire operation
+            writetimeout: 5000       # Timeout for writing data to the server
+            ssl:
+              trust: "*"             # Trust all SSL certificates (use with caution)
+
+
